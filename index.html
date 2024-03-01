@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IslamApp</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="./imge/icon.svg" type="image/x-icon" />
+  </head>
+  <body>
+    <main class="conteiner">
+      <section class="title">
+        <div class="titile__header">
+          <img class="logo" src="./imge/icon.svg" alt="" />
+          <h1 class="titile__header-text">IslamApp</h1>
+          <p class="titile__header-text-2">Без рекламы</p>
+          <button id="button" class="button" onclick="goToAppStore()">
+            Установить
+          </button>
+        </div>
+        <div class="inner">
+          <img class="inner__imge" src="./imge/screen.png" alt="" />
+        </div>
+      </section>
+    </main>
+    <script src="./index.js" type="text/javascript"></script>
+    Parser to UserAgent
+    <script src="https://cdn.jsdelivr.net/npm/ua-parser-js@0/dist/ua-parser.min.js"></script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+  https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-analytics.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyDloScXtYpzNNsTZoRngyMBrm-NsjAePxc",
+        authDomain: "islamapp-web.firebaseapp.com",
+        databaseURL: "https://islamapp-web.firebaseio.com",
+        projectId: "islamapp-web",
+        storageBucket: "islamapp-web.appspot.com",
+        messagingSenderId: "633781364978",
+        appId: "1:633781364978:web:4e53fbb79f579ef3c5886b",
+        measurementId: "G-60VL7D1CKS",
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
+
+    <script type="text/javascript">
+      var parser = new UAParser();
+      var result = parser.getResult();
+
+      firebase.analytics().setUserProperties({
+        browser_name: result.browser.name,
+        browser_version_major: result.browser.version.match(/\d*/),
+        device_model: result.device.model,
+        device_type: result.device.type,
+        device_vendor: result.device.vendor,
+        os_name: result.os.name,
+        os_version_major: result.os.version.match(/\d*/),
+      });
+
+      firebase.analytics().logEvent("redirect_page_view", {
+        browser_name: result.browser.name,
+        browser_version_major: result.browser.version.match(/\d*/),
+        device_model: result.device.model,
+        device_type: result.device.type,
+        device_vendor: result.device.vendor,
+        os_name: result.os.name,
+        os_version: result.os.version,
+        os_version_major: result.os.version.match(/\d*/),
+      });
+    </script>
+
+    
+  </body>
+</html>
